@@ -1,0 +1,76 @@
+---
+title: "Tutorial on SGD"
+author: "Hon Hwang and Alan Malecki"
+date: "2016 August"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Stochastic Gradient Descent (SGD) 
+
+- Used heavily in computing
+- *Iterative*
+    + Step by step
+- *Optimisation*
+    + Finding min/max of a function. Finding roots.
+- *Algorithm*
+    + Implementable
+
+## General Form of Iterative Optimisation
+
+<center>$\theta_{k+1} = \theta_{k} - \alpha g(\theta)$</center>
+
+- $k \in {1, 2, 3, \ldots, L}$
+    + $L$ is the number of iterations
+- $\theta$ can be one parameter or a vector
+- $\alpha$ is called *step size*, *learning rate*, or *gain*
+    + Can be a scalar or a matrix (e.g., Newton-Ralphson)
+- $g(\theta)$ is the gradient function
+    + 1st derivative of:
+        * *Objective Function*; or
+        * *Loss Function*
+
+## Intutively…
+
+## Iris Data
+
+We'll use the `iris` dataset
+
+```{r iris-data, echo = FALSE}
+data(iris)
+str(iris)
+```
+
+## Iris Data - Variables of Interest
+
+```{r iris-lm-vars, ech = FALSE}
+library(ggplot2)
+
+qplot(x = Petal.Length, y = Petal.Width, data = iris,
+      xlab = "Petal.Length", ylab = "Petal.Width")
+```
+
+## `lm()` Results
+
+
+## SGD Implementation
+
+- Least Mean Square Loss function
+    + Equation here
+    
+- Gradient for 2 parameters
+    + Equation here
+
+- General Gradient Equation
+
+## Gradient Descent v SGD
+
+- Instanteous Gradient
+
+## SGD Implementation
+
+```{r sgd-lm, echo = TRUE}
+```
