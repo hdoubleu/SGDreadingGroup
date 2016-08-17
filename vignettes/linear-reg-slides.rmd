@@ -15,27 +15,49 @@ knitr::opts_chunk$set(echo = FALSE)
 - *Iterative*
     + Step by step
 - *Optimisation*
-    + Finding min/max of a function. Finding roots.
+    + Finding min/max of a function
+    + Finding roots of equations
 - *Algorithm*
-    + Implementable
 
 ## General Form of Iterative Optimisation
 
-<center>$\theta_{k+1} = \theta_{k} - \alpha g(\theta)$</center>
+<center>$\boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_{k} - \alpha g(\boldsymbol{\theta})$</center>
 
-- $k \in {1, 2, 3, \ldots, L}$
-    + $L$ is the number of iterations
-- $\theta$ can be one parameter or a vector
+- $k \in {1, 2, 3, \ldots, K}$
+    + $K$ is the number of iterations
+- $\boldsymbol{\theta}$ is the vector of parameters to estimate, or just a
+  single parameter
 - $\alpha$ is called *step size*, *learning rate*, or *gain*
     + Can be a scalar or a matrix (e.g., Newton-Ralphson)
-- $g(\theta)$ is the gradient function
-    + 1st derivative of:
+- $g(\boldsymbol{\theta})$ is the gradient function
+    + g(\boldsymbol{$\theta$}) = $\triangledown$L(\boldsymbol{$\theta$}) 
+    + 1st derivative of L($\boldsymbol{\theta}$):
         * *Objective Function*; or
         * *Loss Function*
 
-## Intutively…
+## Notations
 
-## Iris Data
+- Depending on the context, notations may differ
+
+In Equation (2) of Bottou (2010):
+
+- $k$, the current iteration number is represented as $w$
+- The step size $\alpha$ is $\gamma$
+
+- Just keep in mind the general form
+
+## Intuitively…
+
+- Attempting to find the valley (lowest point) of a surface. E.g.,
+  The UTS Green area.
+- $\alpha$ (step size/learning rate/gain)
+     + How big is your next stride
+- $g(\boldsymbol{\theta}), or $\triangledown$L(\boldsymbol{$\theta$})
+     + The *direction* to take the next step
+- Since you want to find the valley, the ideal direction is the
+  *steepest* path
+
+## Example - Iris Data
 
 We'll use the `iris` dataset
 
@@ -46,7 +68,7 @@ str(iris)
 
 ## Iris Data - Variables of Interest
 
-```{r iris-lm-vars, ech = FALSE}
+```{r iris-lm-vars, echo = FALSE}
 library(ggplot2)
 
 qplot(x = Petal.Length, y = Petal.Width, data = iris,
@@ -55,22 +77,80 @@ qplot(x = Petal.Length, y = Petal.Width, data = iris,
 
 ## `lm()` Results
 
+```{r iris-lm, echo = FALSE}
+iris_lm_fit <- lm(Petal.Width ~ Petal.Length, data = iris)
+```
 
-## SGD Implementation
-
-- Least Mean Square Loss function
-    + Equation here
-    
-- Gradient for 2 parameters
-    + Equation here
-
-- General Gradient Equation
-
-## Gradient Descent v SGD
-
-- Instanteous Gradient
+```{r iris-lmfit}
+summary(iris_lm_fit)
+```
 
 ## SGD Implementation
 
 ```{r sgd-lm, echo = TRUE}
 ```
+
+## Limitations of SGD
+
+- Approximate to true parameters
+- May not converge
+- Local minimum
+- Bottou (2010) refers to Robbins and Siegmund (1971, repub 1985) as the
+  source for the theory on convergence
+
+## Types of optimisation
+
+Recall the general form of iterative optimisation:
+
+<center>$\boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_{k} - \alpha g(\boldsymbol{\theta})$</center>
+<br />
+
+- Algorithms differ in how they specify $\alpha$, the step size, and
+  $g(\boldsymbol{\theta})$, the gradient function
+
+## Types of optimisation
+
+- Different $\alpha$:
+      + In Newton–Raphson, it's the inverse of the 2nd derivative matrix (Hessian)
+      + In SGD, it's a scalar value
+- Different $g(\boldsymbol{\theta})$:
+      + Sum over all the observations
+      + One obsercation at a time
+- *Restricted optimisaton* is when a constraint is placed on the 
+  $\boldsymbol{\theta}$ iteself. E.g., Lasso
+
+## Implementations
+
+- *Back propagation* in Neural Networks
+    + Use of chain rule of differentiation when calculating the gradient. Minnar (2015)
+- Parallelised implementation
+    + Dean, et al. (2012). Google's *DistBelief*. A *asynchornous* SGD implementation.
+    + Chen, et al. (2016). A *synchornous* SGD implementation.
+- Apache Manhout, Apache Spark - non-parallel but applicable to large data sets.                                      
+    
+## References
+
+Bottou, L. 2010, *Large-scale machine learning with stochastic gradient descent*,
+Proceedings of COMPSTAT’2010, pp. 177–86.
+
+Chen, J., Monga, R., Bengio, S. & Jozefowicz, R. 2016,
+*Revisiting Distributed Synchronous SGD*, ICLR, p. 5.
+
+Dean, J., Corrado, G.S., Monga, R., Chen, K., Devin, M., Le, Q. V, Mao, M.Z.,
+Ranzato, M.A., Senior, A., Tucker, P., Yang, K. & Ng, A.Y. 2012,
+*Large Scale Distributed Deep Networks*,
+NIPS 2012: Neural Information Processing Systems, pp. 1–11.
+
+Minnaar, A. 2015, *Deep Learning Basics: Neural Networks, Backpropagation and Stochastic Gradient Descent*,
+viewed 16 August 2016, 
+[](http://alexminnaar.com/deep-learning-basics-neural-networks-backpropagation-and-stochastic-gradient-descent.html)
+
+## References
+
+Robbins, H. & Siegmund, D. 1985,
+*A Convergence Theorem for Non Negative Almost Supermartingales and Some Applications*,
+in T.L. Lai & D. Siegmund (eds),Herbert Robbins Selected Papers,
+Springer New York, New York, NY, pp. 111–35.
+
+Spall, James C., 2003. *Introduction to stochastic search and optimization estimation, simulation, and control*,
+Wiley-Interscience, Hoboken, N.J.
