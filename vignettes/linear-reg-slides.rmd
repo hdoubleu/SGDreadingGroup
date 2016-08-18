@@ -9,6 +9,10 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+## GitHub project
+
+- https://github.com/AlanStudent/SGDreadingGroup
+
 ## Stochastic Gradient Descent (SGD) 
 
 - Used heavily in computing
@@ -114,9 +118,8 @@ Recall the general form of iterative optimisation:
       + In Newton–Raphson, it's the inverse of, the matrix containing the 2nd partial derivatives of the loss function
           * Hessian
       + In SGD, it's a scalar value
-- Different $g(\boldsymbol{\theta})$:
-      + Sum over all the observations
-      + One obsercation at a time
+- Different $g(\boldsymbol{\theta})$
+
 - *Restricted optimisaton* is when a constraint is placed on the 
   $\boldsymbol{\theta}$ iteself. E.g., Lasso
 
