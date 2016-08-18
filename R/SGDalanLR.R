@@ -21,8 +21,14 @@ x <- pL
 y <- pW
 ### Randomly sample data set for 'Stochastic'
 ### part of Stochastic Gradient Descent
-yR <- sample(y)
-lengthData <- length(pL)
+
+#size of total sample
+n.s <- 2000
+indx <- sample(1:150,size=n.s,replace=T)
+
+yR <- y[indx]
+xR <- x[indx]
+lengthData <- length(yR)
 ####################################
 ####################################
 
@@ -56,10 +62,10 @@ alpha <- 0.01
 
 
 for ( i in 1:lengthData) {
-  p[i] <- b0[i] +b1[i]*x[i]
+  p[i] <- b0[i] +b1[i]*xR[i]
   error[i] <- p[i] - yR[i]
   b0[i+1] <- b0[i] - alpha*error[i]
-  b1[i+1] <- b1[i] - alpha*error[i]*x[i]
+  b1[i+1] <- b1[i] - alpha*error[i]*xR[i]
   
 }
 
