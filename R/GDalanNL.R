@@ -10,6 +10,7 @@ f <-  function(x) {
   1.2 * (x-2)^2 + 3.2
 }
 ### plot the function 
+par(bg='grey')
 plot(xs , f (xs), type="l",xlab="x",
      ylab=expression(1.2(x-2)^2 +3.2))
 ### df/dx = 2.4(x-2), if x = 2 then 2.4(2-2) = 0

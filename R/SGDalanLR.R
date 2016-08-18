@@ -13,7 +13,8 @@ lm(pW~pL)
 lmb0 <- lm(pW~pL)$coef[[1]] 
 lmb1 <- lm(pW~pL)$coef[[2]]
 ### Plot OLS 
-plot(pW~pL)
+par(bg='grey')
+plot(pW~pL, main='Iris')
 abline(lm(pW~pL))
 ### 
 x <- pL
@@ -80,6 +81,7 @@ finalb0 ; finalb1
 ### Figures
 ####################################
 ### Linear Regression Equation
+par(bg='grey')
 plot(x,y, pch=19, ylim=c(0,7),xlim=c(0,7),
      main='Iris Data SGD vs. OLS LR',
      xlab="Petal Length", ylab='Petal Width')
@@ -92,7 +94,7 @@ legend('topright', col=c(1,4,2), c('data','SGD','OLS'),
 ### estimates progress
 min(coefsResults)-.1
 max(coefsResults)+.1
-par(mfrow=c(1,2))
+par(mfrow=c(1,2), bg='grey')
 plot(1,type='n', 
      xlab="b0", ylab='b1',
      main="SGD Parameter Iterations"
@@ -133,10 +135,11 @@ par(mfrow=c(1,1))
 # error
 errorMax <- max(error)+2
 errorMin <- min(error)-2
+par(bg='grey')
 plot(error, type='l', col=4,
      #      ylim=c(-4.5,2.5),
      ylim=c(errorMin, errorMax),
-     ylab='Error', xlab='iteration',
+     ylab='Error', xlab='Iteration',
      main='SGD Error Loss Function',
      lwd=2)
 abline(h=0,col=1)
