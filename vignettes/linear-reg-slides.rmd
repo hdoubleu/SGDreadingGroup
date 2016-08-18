@@ -30,8 +30,8 @@ knitr::opts_chunk$set(echo = FALSE)
 - $\alpha$ is called *step size*, *learning rate*, or *gain*
     + Can be a scalar or a matrix (e.g., Newton-Ralphson)
 - $g(\boldsymbol{\theta})$ is the gradient function
-    + g(\boldsymbol{$\theta$}) = $\triangledown$L(\boldsymbol{$\theta$}) 
-    + 1st derivative of L($\boldsymbol{\theta}$):
+    + $g(\boldsymbol{\theta})$ = $\triangledown L(\boldsymbol{\theta})$ 
+    + 1st partial derivative of L($\boldsymbol{\theta}$):
         * *Objective Function*; or
         * *Loss Function*
 
@@ -52,7 +52,7 @@ In Equation (2) of Bottou (2010):
   The UTS Green area.
 - $\alpha$ (step size/learning rate/gain)
      + How big is your next stride
-- $g(\boldsymbol{\theta}), or $\triangledown$L(\boldsymbol{$\theta$})
+- $g(\boldsymbol{\theta})$, or $\triangledown L(\boldsymbol{\theta})$
      + The *direction* to take the next step
 - Since you want to find the valley, the ideal direction is the
   *steepest* path
@@ -95,8 +95,8 @@ summary(iris_lm_fit)
 - Approximate to true parameters
 - May not converge
 - Local minimum
-- Bottou (2010) refers to Robbins and Siegmund (1971, repub 1985) as the
-  source for the theory on convergence
+- Bottou (2010) refers to Robbins and Siegmund (1971), re-published in 1985 as 
+  the source for the theory on convergence
 
 ## Types of optimisation
 
@@ -111,7 +111,8 @@ Recall the general form of iterative optimisation:
 ## Types of optimisation
 
 - Different $\alpha$:
-      + In Newton–Raphson, it's the inverse of the 2nd derivative matrix (Hessian)
+      + In Newton–Raphson, it's the inverse of, the matrix containing the 2nd partial derivatives of the loss function
+          * Hessian
       + In SGD, it's a scalar value
 - Different $g(\boldsymbol{\theta})$:
       + Sum over all the observations
