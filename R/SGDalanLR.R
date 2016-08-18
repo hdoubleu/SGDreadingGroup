@@ -67,7 +67,6 @@ for ( i in 1:lengthData) {
 ####################################
 ####################################
 ### Results
-tail(b0, n=1) ; tail(b1, n=1)
 coefsResults <- data.frame(b0,b1)
 finalb0 <- tail(b0, n=1)
 finalb1 <- tail(b1, n=1)
@@ -91,6 +90,8 @@ legend('topright', col=c(1,4,2), c('data','SGD','OLS'),
        lty=c(NA,1,1), pch=c(19,NA,NA),
        horiz=TRUE)
 
+
+
 ### estimates progress
 min(coefsResults)-.1
 max(coefsResults)+.1
@@ -105,7 +106,8 @@ plot(1,type='n',
 )
 legend('topright', col=c(4,2,3), c('SGD','OLS','Final SGD'),
        pch=c(4,19,19),
-       horiz=TRUE)
+       horiz=TRUE,
+       cex=0.75)
 points(lmb0,lmb1, pch=19, col=2)
 lengthResults <- length(coefsResults$b0)
 for ( i in 1:lengthResults){
@@ -121,7 +123,7 @@ plot(x,y, pch=19,
 )
 abline(lm(y~x), col=2, lwd=2) # regression line using OLS
 legend('topright', col=c(1,4,2,3), c('data','SGD','OLS','Final SGD'),
-       lty=c(NA,1,1,1), pch=c(19,NA,NA,NA),
+       lty=c(NA,1,1,1), pch=c(19,NA,NA,NA),lwd=c(NA,1,2,2),
        horiz=TRUE)
 for ( i in 1:lengthResults){
   abline(b0[i], b1[i], col=4, lwd=.25) # regression line using SGD
@@ -129,6 +131,9 @@ for ( i in 1:lengthResults){
 }
 abline(finalb0, finalb1, col=3, lwd=2) # regression line using SGD
 par(mfrow=c(1,1))
+
+
+
 
 ####################################
 ### SGD Error

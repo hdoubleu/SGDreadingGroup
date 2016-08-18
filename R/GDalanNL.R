@@ -12,11 +12,13 @@ f <-  function(x) {
 ### plot the function 
 par(bg='grey')
 plot(xs , f (xs), type="l",xlab="x",
-     ylab=expression(1.2(x-2)^2 +3.2))
+     ylab=expression(1.2(x-2)^2 +3.2),
+     main="Gradient Descent")
 ### df/dx = 2.4(x-2), if x = 2 then 2.4(2-2) = 0
 ### The actual solution we will
 ### approximate with gradient descent
-### is  x = 2 as depicted in the plot below
+### is  x = 2 as shown in the plot below
+### (2,3.2)
 lines (c (2,2), c (3,8),
        col="red",lty=2)
 text (2.1,7, "Closedform solution",
@@ -48,7 +50,7 @@ ftrace <- f(x) # store y-values
 ####################################
 ### impact of step size
 stepFactor <- 0.6 # learning rate 'alpha'
-# stepFactor <- 0.1 # learning rate 'alpha'
+# stepFactor <- 0.1 # learning rxate 'alpha'
 # stepFactor <- 0.01 # learning rate 'alpha'
 ### Note is alpha is 0.01 then change 
 ### iterations from 100 to 1000
@@ -70,6 +72,7 @@ text (0.5,6, "Gradient Descent",col="blue",pos= 4)
 ### Results
 # print final value of x
 print(x) # x converges to 2.0
+xtrace
 ####################################
 ####################################
 
